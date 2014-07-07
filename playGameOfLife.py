@@ -1,12 +1,45 @@
-import GameOfLife as game
+from CellularAutomata import CellularAutomata2D
+import GameOfLifePatterns as game
 import matplotlib.pyplot as plt
+from time import sleep
 
 N=10
+nsteps = 5
 
-cell= game(N)
 
+# Create the cellular automaton, and give it an initially random distribution
+
+cell= CellularAutomata2D(N)
+
+#game.add_beehive(cell, 1, 1)
+#game.add_block(cell, 1, 1)
+#game.add_blinker(cell, 1,1)
+game.add_toad(cell, 2, 2)
+
+# Set up interactive plotting
+
+plt.ion()
 
 fig1 = plt.figure()
-ax = fig1.add_subplot(111)
-hist = ax.hist2D(game.grid, bins = game.N)
+
+istep= 0
+while istep < nsteps:    
+
+    # Draw the automaton
+    ax = fig1.add_subplot(111)
+    hist = ax.pcolor(cell.grid,edgecolors='black', cmap='binary')
+    #hist = ax.pcolor(cell.nextgrid,edgecolors='black', cmap='binary')
+
+    plt.draw()
+    
+    # Apply the Game of Life Rule, and update the grid
+    cell.ApplyGameOfLifeRule()
+    cell.updateGrid()
+    
+    # Clear axes for next drawing
+    
+    sleep(1)
+    ax.clear()
+    
+    istep+=1
 
