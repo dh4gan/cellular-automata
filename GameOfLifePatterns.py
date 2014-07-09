@@ -18,6 +18,9 @@ def add_block(cell, icentre,jcentre):
     
 
 def add_beehive(cell, icentre,jcentre):
+    '''
+    Adds a beehive into the system, with (icentre,jcentre) being the inner left blank square
+    '''
     
     extent = 7
     cell.clear(icentre,jcentre,extent)
@@ -29,6 +32,9 @@ def add_beehive(cell, icentre,jcentre):
     cell.grid[icentre,jcentre+2] = 1
     
 def add_blinker(cell,icentre,jcentre):
+    '''
+    Adds a vertical line of 3 blocks (period 1)
+    '''
         
     extent = 4
     cell.clear(icentre,jcentre,extent)
@@ -36,11 +42,27 @@ def add_blinker(cell,icentre,jcentre):
     
 def add_loaf(cell,icentre, jcentre):
     '''
+    Adds a loaf, with (icentre,jcentre) in the bottom left corner (blank)
     '''
+    
+    cell.grid[icentre,jcentre+1:jcentre+3] = 1
+    cell.grid[icentre+1:icentre+3,jcentre+3] = 1
+    cell.grid[icentre+1,jcentre] = 1
+    cell.grid[icentre+2,jcentre+1] = 1
+    cell.grid[icentre+3,jcentre+2] = 1
     
 def add_boat(cell,icentre, jcentre):
     '''
     '''
+    extent = 4
+    cell.clear(icentre,jcentre,extent)
+    
+    indices = cell.getVonNeumannNeighbourhood(icentre,jcentre)
+    print indices
+    for element in indices:
+        cell.grid[element[0],element[1]] = 1
+        
+    cell.grid[icentre+1,jcentre-1] = 1
     
 def add_toad(cell,icentre,jcentre):
     extent = 3
@@ -52,6 +74,7 @@ def add_toad(cell,icentre,jcentre):
 
 def add_beacon(cell,icentre,jcentre):
     '''
+    Adds two 2x2 blocks, which repeat a pattern of period 2
     '''
     
     extent = 3
@@ -63,11 +86,9 @@ def add_beacon(cell,icentre,jcentre):
     
 def add_pulsar(cell,icentre,jcentre):
     
-    extent = 7
-    #cell.clear(icentre,jcentre,extent)
-    
-    print icentre-2, icentre-5, jcentre+1, jcentre-1
-    
+    extent = 8
+    cell.clear(icentre,jcentre,extent)
+
     # Start with inner cross
     
     # North

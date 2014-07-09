@@ -17,7 +17,8 @@ cell.randomise()
 #game.add_toad(cell, 2, 2)
 #game.add_beacon(cell, 3, 3)
 
-game.add_pulsar(cell, 25, 25)
+#game.add_pulsar(cell, 25, 25)
+game.add_boat(cell, 25, 25)
 
 # Set up interactive plotting
 

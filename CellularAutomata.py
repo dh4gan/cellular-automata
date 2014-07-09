@@ -20,6 +20,10 @@ class CellularAutomata2D(object):
         
         
     def getMooreNeighbourhood(self, i,j):
+        '''
+        Returns a set of indices corresponding to the Moore Neighbourhood
+        (These are the cells immediately adjacent to (i,j), plus those diagonally adjacent)
+        '''
         
         indices = []
         
@@ -35,16 +39,20 @@ class CellularAutomata2D(object):
         return indices
     
     def getVonNeumannNeighbourhood(self,i,j):
+        '''
+        Returns a set of indices corresponding to the Von Neumann Neighbourhood
+        (These are the cells immediately adjacent to (i,j), but not diagonally adjacent)
+        '''
         
         indices = []
         
-        for iadd in range(i-1,i+1):
+        for iadd in range(i-1,i+2):
             if(iadd==i): continue
             if(iadd>self.N-1): iadd = iadd - self.N        
                 
             indices.append([iadd,j])
             
-        for jadd in range(j-1,j+1):
+        for jadd in range(j-1,j+2):
             if(jadd==j): continue
             if(jadd>self.N-1): jadd = jadd - self.N
             
@@ -72,12 +80,23 @@ class CellularAutomata2D(object):
                     self.grid[i,j] = 0
     
     def updateGrid(self):
+        '''
+        Takes the changes queued up on self.nextgrid, and applies them to self.grid
+        '''
         
         self.grid = np.copy(self.nextgrid)
         self.nextgrid = np.zeros((self.N,self.N))
         
                         
     def ApplyGameOfLifeRule(self):
+        '''
+        Constructs the self.nextgrid matrix based on the properties of self.grid
+        Applies the Game of Life Rules:
+        
+        1. Alive cells with 2 or 3 neighbours survive
+        2. Dead cells with exactly 3 neighbours come alive
+        3. Cells which do not satisfy 1 or 2 become or remain dead
+        '''
         
         for i in range(self.N):
             for j in range(self.N):
