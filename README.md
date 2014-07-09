@@ -6,7 +6,8 @@ Depends on numpy and matplotlib (pcolor) to generate graphics
 CellularAutomata.py contains the CellularAutomata2D object which holds the automaton
 and the rules by which it evolves
 
-GameOfLifePatterns.py contains a set of basic patterns to add to the automaton
+GameOfLifePatterns.py contains a set of basic patterns to add to the automaton for
+Game Of Life
 
 playGameOfLife.py is a run script to generate automata
 
