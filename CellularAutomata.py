@@ -69,6 +69,13 @@ class CellularAutomata2D(object):
             for j in range(self.N):
                 self.grid[i,j] = np.rint(np.random.random())
                 
+    def randomise_with_symmetry(self):
+        
+        for i in range(self.N/2, self.N):
+            for j in range(self.N):
+                self.grid[i,j] = np.rint(np.random.random())
+                self.grid[i-self.N/2,j] = self.grid[i,j]
+                
     def clear(self, icentre, jcentre, extent):
         '''
         Clears a space on the grid

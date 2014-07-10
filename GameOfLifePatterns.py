@@ -85,7 +85,9 @@ def add_beacon(cell,icentre,jcentre):
     
     
 def add_pulsar(cell,icentre,jcentre):
-    
+    '''
+    Adds a pulsar, a period 3 oscillator
+    '''
     extent = 8
     cell.clear(icentre,jcentre,extent)
 
@@ -121,4 +123,49 @@ def add_pulsar(cell,icentre,jcentre):
     
     cell.grid[icentre+2: icentre+5, jcentre-6] = 1
     cell.grid[icentre+6, jcentre-4:jcentre-1] = 1
+    
+def add_glider(cell,icentre,jcentre):
+    '''
+    Adds a glider, with (icentre,jcentre) being the bottom left tile (alive)
+    '''
+    
+    cell.grid[icentre,jcentre:jcentre+3] = 1
+    cell.grid[icentre+1,jcentre+2] = 1
+    cell.grid[icentre+2,jcentre+1] = 1
+    
+def add_spaceship(cell,icentre,jcentre):
+    '''
+    Adds a lightweight spaceship, with (icentre,jcentre) being the bottom left tile (alive)
+    '''
+    cell.grid[icentre,jcentre:jcentre+4]=1
+    cell.grid[icentre:icentre+3,jcentre]=1
+    cell.grid[icentre+3,jcentre+1] = 1
+    cell.grid[icentre+3,jcentre+4] = 1
+    cell.grid[icentre+1,jcentre+4] = 1
+    
+def add_glider_gun(cell,icentre,jcentre):
+    '''
+    Adds a Gosper glider gun - two blocks with patterns inbetween to set up the gun
+    '''
+    add_block(cell,icentre+5,jcentre+2)
+    
+    # Make first of inner patterns
+    cell.grid[icentre+4:icentre+7,jcentre+12] = 1        
+    cell.grid[icentre+3,jcentre+13] =cell.grid[icentre+7,jcentre+13] = 1 
+    #cell.grid[icentre+2,jcentre+14] =cell.grid[icentre+8,jcentre+14] = 1
+    cell.grid[icentre+2,jcentre+14:jcentre+16] =cell.grid[icentre+8,jcentre+14:jcentre+16] = 1
+    cell.grid[icentre+5,jcentre+16] =1
+    cell.grid[icentre+3,jcentre+17] =cell.grid[icentre+7,jcentre+17] = 1
+    cell.grid[icentre+4:icentre+7,jcentre+18] = 1
+    cell.grid[icentre+5,jcentre+19] =1
+    
+    # Now second pattern
+    cell.grid[icentre+6:icentre+9, jcentre+22:jcentre+24] = 1
+    cell.grid[icentre+5,jcentre+24] =cell.grid[icentre+9,jcentre+24] = 1
+    cell.grid[icentre+4:icentre+6,jcentre+26] = cell.grid[icentre+9:icentre+11,jcentre+26] = 1
+    
+    
+    add_block(cell,icentre+7,jcentre+36)
+    
+
     

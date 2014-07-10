@@ -4,13 +4,15 @@ import matplotlib.pyplot as plt
 from time import sleep
 
 N=50
-nsteps = 100
-
+nsteps = 1000
+icentre = 10
+jcentre = 10
 
 # Create the cellular automaton, and give it an initially random distribution
 
 cell= CellularAutomata2D(N)
-cell.randomise()
+#cell.randomise()
+cell.randomise_with_symmetry()
 #game.add_beehive(cell, 1, 1)
 #game.add_block(cell, 1, 1)
 #game.add_blinker(cell, 1,1)
@@ -18,7 +20,10 @@ cell.randomise()
 #game.add_beacon(cell, 3, 3)
 
 #game.add_pulsar(cell, 25, 25)
-game.add_boat(cell, 25, 25)
+#game.add_boat(cell, 25, 25)
+#game.add_glider(cell, icentre, jcentre)
+#game.add_spaceship(cell, icentre, jcentre)
+#game.add_glider_gun(cell, icentre, jcentre)
 
 # Set up interactive plotting
 
