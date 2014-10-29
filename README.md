@@ -3,6 +3,8 @@ This is a collection of Python scripts to generate cellular automata
 
 Depends on numpy and matplotlib (pcolor) to generate graphics
 
+(Developed on numpy 1.8.0, and matplotlib 1.3.0)
+
 CellularAutomata.py contains the CellularAutomata2D object which holds the automaton
 and the rules by which it evolves
 
